@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Contact Form Validation</title>
+
+    <style>
+
+        body{
+            font-family: Arial;
+            background:#f2f2f2;
+        }
+
+        .container{
+
+            width:450px;
+            margin:auto;
+            background:white;
+            padding:20px;
+            margin-top:30px;
+            border-radius:10px;
+
+        }
+
+        input,textarea{
+
+            width:100%;
+            padding:8px;
+            margin-top:5px;
+            margin-bottom:5px;
+
+        }
+
+        button{
+
+            width:100%;
+            padding:10px;
+            background:green;
+            color:white;
+            border:none;
+
+        }
+
+        span{
+
+            color:red;
+            font-size:14px;
+
+        }
+
+        #success{
+
+            margin-top:20px;
+            color:green;
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2 align="center">Contact Form</h2>
+
+<form onsubmit="return handleSubmit()">
+
+<label>Name:</label>
+<input type="text" id="name">
+<span id="nameError"></span>
+
+<label>Email:</label>
+<input type="text" id="email">
+<span id="emailError"></span>
+
+<label>Phone:</label>
+<input type="text" id="phone">
+<span id="phoneError"></span>
+
+<label>Password:</label>
+<input type="password" id="password">
+<span id="passwordError"></span>
+
+<label>Age:</label>
+<input type="text" id="age">
+<span id="ageError"></span>
+
+<label>Message:</label>
+<textarea id="message"></textarea>
+<span id="messageError"></span>
+
+<button type="submit">Submit</button>
+
+</form>
+
+<div id="success"></div>
+
+</div>
+
+<script>
+
+function handleSubmit()
+{
+
+var name=document.getElementById("name").value;
+
+var email=document.getElementById("email").value;
+
+var phone=document.getElementById("phone").value;
+
+var password=document.getElementById("password").value;
+
+var age=document.getElementById("age").value;
+
+var message=document.getElementById("message").value;
+
+
+// Error clear
+
+document.getElementById("nameError").innerHTML="";
+document.getElementById("emailError").innerHTML="";
+document.getElementById("phoneError").innerHTML="";
+document.getElementById("passwordError").innerHTML="";
+document.getElementById("ageError").innerHTML="";
+document.getElementById("messageError").innerHTML="";
+document.getElementById("success").innerHTML="";
+
+
+// Empty validation
+
+if(name=="" || email=="" || phone=="" || password=="" || age=="" || message=="")
+{
+
+alert("Please Fill All Fields");
+return false;
+
+}
+
+
+// Name Validation
+
+var letters=/^[A-Za-z ]+$/;
+
+if(!letters.test(name) || name.length<3)
+{
+
+document.getElementById("nameError").innerHTML="Only alphabets and minimum 3 characters";
+return false;
+
+}
+
+
+// Email Validation
+
+if(email.indexOf("@")==-1 || email.indexOf(".")==-1)
+{
+
+document.getElementById("emailError").innerHTML="Invalid Email";
+return false;
+
+}
+
+
+// Phone Validation
+
+if(phone.length!=10 || isNaN(phone))
+{
+
+document.getElementById("phoneError").innerHTML="Phone must be 10 digits";
+return false;
+
+}
+
+
+// Password Validation
+
+var pass=/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&]).{8,}$/;
+
+if(!pass.test(password))
+{
+
+document.getElementById("passwordError").innerHTML="Password is not strong";
+return false;
+
+}
+
+
+// Age Validation
+
+if(isNaN(age) || age<18)
+{
+
+document.getElementById("ageError").innerHTML="Age must be 18 or above";
+return false;
+
+}
+
+
+// Message Validation
+
+if(message.length<10)
+{
+
+document.getElementById("messageError").innerHTML="Minimum 10 characters";
+return false;
+
+}
+
+
+
+// Success Message
+
+document.getElementById("success").innerHTML=
+
+"<h3>Registration Successful!</h3>"+
+
+"Name : "+name+"<br><br>"+
+
+"Email : "+email+"<br><br>"+
+
+"Phone : "+phone+"<br><br>"+
+
+"Age : "+age+"<br><br>"+
+
+"Message : "+message+"<br><br>"+
+
+"Thank you for registering successfully.";
+
+return false;
+
+}
+
+</script>
+
+</body>
+
+</html>

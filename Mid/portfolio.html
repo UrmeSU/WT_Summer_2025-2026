@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<title>Portfolio</title>
+
+<style>
+
+body{
+
+font-family:Arial;
+text-align:center;
+
+}
+
+.dark{
+
+background:black;
+color:white;
+
+}
+
+button{
+
+padding:10px;
+
+}
+
+</style>
+
+</head>
+
+<body id="body">
+
+<h1>My Portfolio</h1>
+
+<h2 id="greeting"></h2>
+
+<button onclick="changeTheme()">Dark / Light Mode</button>
+
+<script>
+
+var hour=new Date().getHours();
+
+if(hour<12)
+{
+
+document.getElementById("greeting").innerHTML="Good Morning";
+
+}
+
+else if(hour<18)
+{
+
+document.getElementById("greeting").innerHTML="Good Afternoon";
+
+}
+
+else
+{
+
+document.getElementById("greeting").innerHTML="Good Evening";
+
+}
+
+
+
+function changeTheme()
+{
+
+var body=document.getElementById("body");
+
+if(body.className=="")
+{
+
+body.className="dark";
+
+}
+
+else
+{
+
+body.className="";
+
+}
+
+}
+
+</script>
+
+</body>
+
+</html>
